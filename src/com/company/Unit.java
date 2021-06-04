@@ -1,12 +1,14 @@
 package com.company;
 
-public class Unit {
-    String name;
-    int attackPoints;
-    int defensePoints;
+public abstract class Unit extends Tile{
+    protected String name;
+    protected int attackPoints;
+    protected int defensePoints;
+  //  Protected Health h
 
-    public Unit(String name, int attackPoints, int defensePoints) {
-        this.name = name;
+   public Unit(char tile,String name, int attackPoints, int defensePoints) {
+       super(tile);
+       this.name = name;
         this.attackPoints = attackPoints;
         this.defensePoints = defensePoints;
     }
@@ -34,4 +36,6 @@ public class Unit {
     public void setDefensePoints(int defensePoints) {
         this.defensePoints = defensePoints;
     }
+    public abstract void Combat();
+    public abstract void onKill();
 }
