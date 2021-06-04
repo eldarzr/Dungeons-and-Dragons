@@ -31,6 +31,10 @@ public abstract class Tile implements Comparable<Tile>  {
     public int compareTo(Tile tile) {
         return getPosition().compareTo(tile.getPosition());
     }
+    protected void battle(Unit u){
+
+    }
+    public abstract void accept(Unit unit);
 
     public String toString() {
         return String.valueOf(character);

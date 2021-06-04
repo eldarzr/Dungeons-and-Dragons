@@ -19,9 +19,10 @@ public class Monster extends Enemy {
     }
 
     @Override
-    public void onKill() {
+    protected void onKill(Enemy e) {
 
     }
+
 
     @Override
     public void processStep() {

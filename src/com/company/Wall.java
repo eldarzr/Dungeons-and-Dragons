@@ -6,4 +6,8 @@ public class Wall extends Tile {
         initialize(position);
     }
 
+    @Override
+    public void accept(Unit unit) {
+       //??> unit.accept(this);
+    }
 }

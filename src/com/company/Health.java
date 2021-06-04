@@ -10,4 +10,7 @@ public class Health extends Resource {
         poolbar = poolbar + (level*10);
         amount = poolbar;
     }
+
+    public void reduceAmount(int damageDone) {
+    }
 }

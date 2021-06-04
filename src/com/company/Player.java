@@ -1,6 +1,6 @@
 package com.company;
 
-public class Player extends Unit {
+public abstract class Player extends Unit {
     public static final char playerTile = '@';
     protected int level;
     protected Experience exp;
@@ -24,10 +24,7 @@ public class Player extends Unit {
 
     }
 
-    // When the player kills an enemy
-    protected void onKill(Enemy e){
-
-    }
+public abstract void onGameTick();
 
     @Override
     public void Combat() {
@@ -35,7 +32,7 @@ public class Player extends Unit {
     }
 
     @Override
-    public void onKill() {
+    protected void onKill(Enemy enemy) {
 
     }
 
