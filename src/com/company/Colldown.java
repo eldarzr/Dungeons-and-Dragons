@@ -37,4 +37,8 @@ public class Colldown {
         }
         return false;
     }
+
+    public void onLevelUp(){
+        remainingCooldown = 0;
+    }
 }

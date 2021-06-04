@@ -27,12 +27,24 @@ public class Position {
         this.y = y;
     }
 
-    public int range(Position p)
+    public double range(Position p)
     {
-       return 0;
+        return range(p.x,p.y);
+    }
+
+    public double range(int x, int y)
+    {
+        double disX = Math.exp(this.x-x);
+        double disY = Math.exp(this.y-y);
+        return Math.sqrt(disX+disY);
     }
 
     public void translate (int x, int y){
+        this.x = x;
+        this.y = y;
+    }
 
+    public int compareTo(Position p){
+        return (int) range(p);
     }
 }
