@@ -49,4 +49,8 @@ public abstract class Unit extends Tile{
     public abstract void onKill();
     public abstract void processStep();
     public abstract void onDeath();
+
+    public String describe() {
+        return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", getName(), getHealth(), getAttackPoints(), getDefensePoints());
+    }
 }
