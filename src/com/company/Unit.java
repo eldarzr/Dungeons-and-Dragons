@@ -4,13 +4,22 @@ public abstract class Unit extends Tile{
     protected String name;
     protected int attackPoints;
     protected int defensePoints;
-  //  Protected Health h
+    protected Health health;
 
-   public Unit(char tile,String name, int attackPoints, int defensePoints) {
-       super(tile);
-       this.name = name;
+   public Unit(char tile,String name, int attackPoints, int defensePoints ,Health health) {
+        super(tile);
+        this.name = name;
         this.attackPoints = attackPoints;
         this.defensePoints = defensePoints;
+        this.health=health;
+    }
+
+    public Health getHealth() {
+        return health;
+    }
+
+    public void setHealth(Health health) {
+        this.health = health;
     }
 
     public String getName() {
@@ -38,4 +47,6 @@ public abstract class Unit extends Tile{
     }
     public abstract void Combat();
     public abstract void onKill();
+    public abstract void processStep();
+    public abstract void onDeath();
 }
