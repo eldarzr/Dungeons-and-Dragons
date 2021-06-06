@@ -36,8 +36,8 @@ public class Board {
 
     public void printBoard(){
         for(int i=0; i<tilesArr.length; i++)
-            for(int j=0; j<tilesArr[i].length; j++)
-                userOutput.writeOutput(String.valueOf(tilesArr[i][j].character));
+            //for(int j=0; j<tilesArr[i].length; j++)
+                userOutput.writeOutput(Arrays.toString(tilesArr[i]));
     }
 
 
@@ -48,8 +48,18 @@ public class Board {
     public void onTick(char c) {
         Position pos = player.getPosition();
         int currentPos = pos.getX()+1;
-        Tile t = tilesArr[pos.x+1][pos.y];
+        Tile t =null;
+        if(c == 'd')
+            t = tilesArr[pos.x][pos.y+1];
+        else if (c== 'a')
+            t = tilesArr[pos.x][pos.y-1];
+        else if (c== 'w')
+            t = tilesArr[pos.x-1][pos.y];
+        else if (c== 's')
+            t = tilesArr[pos.x+1][pos.y];
         player.interact(t);
+
+        tilesArr[player.position.x ][player.position.y] = player;
 
         for (Tile tile: tiles) {
             tilesArr[tile.position.x][tile.position.y] = tile;

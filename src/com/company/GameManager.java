@@ -36,12 +36,7 @@ public class GameManager {
 
 
     public void onTick(char c) {
-        if (c=='d')
-        {
-
-            board.onTick(c);
-        }
-
-
+        board.onTick(c);
+        board.printBoard();
     }
 }

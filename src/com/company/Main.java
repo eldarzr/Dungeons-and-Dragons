@@ -1,12 +1,14 @@
 package com.company;
+import java.net.URISyntaxException;
 import java.util.*;
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws URISyntaxException {
 	// write your code here
         UserOutput userOutput = UserOutput.getInstance();
         UserInput userInput = new UserInput();
-        char[][] levels = readLevel("C:\\Users\\אלדר זריהן\\Documents\\לימודים\\סמסטר ב'\\עקרונות תכנות מונחה עצמים\\dnd demo\\levels_dir\\level0.txt");
+        //char[][] levels = readLevel("C:\\Users\\אלדר זריהן\\Documents\\לימודים\\סמסטר ב'\\עקרונות תכנות מונחה עצמים\\dnd demo\\levels_dir\\level0.txt");
+        char[][] levels = readLevel(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath() + "levels_dir/level0.txt");
         for(char[] carr : levels){
             userOutput.writeOutput(Arrays.toString(carr));
         }
