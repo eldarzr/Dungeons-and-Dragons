@@ -13,6 +13,9 @@ public class Main {
         for(char[] carr : levels){
             interceptor.writeOutput(Arrays.toString(carr));
         }
+       // Board b = new Board();
+        LevelInit lv = new LevelInit(board);
+        lv.levelInitiallizer(levels);
         while (true){
             userInput.readLine();
         }
