@@ -5,10 +5,11 @@ public abstract class Player extends Unit {
     protected int level;
     protected Experience exp;
 
-    public Player(String name, int attackPoints, int defensePoints, Health health) {
+    public Player(Position position,String name, int attackPoints, int defensePoints, Health health) {
         super(playerTile, name, attackPoints, defensePoints, health);
         this.level=1;
         this.exp=new Experience(50,0);
+        initialize(position);
     }
 
     protected void onLevelUp(){
@@ -24,7 +25,7 @@ public abstract class Player extends Unit {
 
     }
 
-public abstract void onGameTick();
+//public abstract void onGameTick();
 
     @Override
     public void Combat() {

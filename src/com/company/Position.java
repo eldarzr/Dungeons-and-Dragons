@@ -45,6 +45,14 @@ public class Position {
     }
 
     public int compareTo(Position p){
-        return (int) range(p);
+        if(x<p.x)
+            return 1;
+        else if(x == p.x){
+            if(y<p.y)
+                return 1;
+            else if(y == p.y)
+                return 0;
+        }
+        return -1;
     }
 }

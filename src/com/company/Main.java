@@ -4,18 +4,21 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        UserOutput userOutput = new UserOutput();
+        UserOutput userOutput = UserOutput.getInstance();
         UserInput userInput = new UserInput();
         char[][] levels = readLevel("C:\\Users\\אלדר זריהן\\Documents\\לימודים\\סמסטר ב'\\עקרונות תכנות מונחה עצמים\\dnd demo\\levels_dir\\level0.txt");
         for(char[] carr : levels){
             userOutput.writeOutput(Arrays.toString(carr));
         }
-       // Board b = new Board();
-        LevelInit lv = new LevelInit(board);
-        lv.levelInitiallizer(levels);
+       // LevelInit lv = new LevelInit();
+       // lv.levelInitiallizer(levels);
+
+        GameManager gm = new GameManager();
+        gm.levelInitiallizer(levels);
 
         while (true){
             char c = userInput.readLine().charAt(0);
+            gm.onTick(c);
 
         }
     }

@@ -72,6 +72,9 @@ public abstract class Unit extends Tile{
     public abstract void visit(Enemy e);
 
     private void swapPosition(Empty empty) {
+        Position pos = empty.getPosition();
+        empty.position = position;
+        position=pos;
     }
 
     public abstract void Combat();
