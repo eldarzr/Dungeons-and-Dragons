@@ -1,20 +1,22 @@
 package com.company;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        Interceptor interceptor = new Interceptor();
+        UserOutput userOutput = new UserOutput();
         UserInput userInput = new UserInput();
-        char[][] levels = readLevel("C:\\Users\\אלדר זריהן\\Documents\\לימודים\\סמסטר ב'\\עקרונות תכנות מונחה עצמים\\dnd demo\\levels_dir\\level1.txt");
+        char[][] levels = readLevel("C:\\Users\\אלדר זריהן\\Documents\\לימודים\\סמסטר ב'\\עקרונות תכנות מונחה עצמים\\dnd demo\\levels_dir\\level0.txt");
         for(char[] carr : levels){
-            interceptor.writeOutput(Arrays.toString(carr));
+            userOutput.writeOutput(Arrays.toString(carr));
         }
+
+        Board board = new Board(levels, userOutput);
+        //board.add(new Wall(new Position(0,0)));
+        //board.printBoard();
         while (true){
-            userInput.readLine();
+            char c = userInput.readLine().charAt(0);
+
         }
     }
 
@@ -40,4 +42,6 @@ public class Main {
         }
         return null;
     }
+
+
 }

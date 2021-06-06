@@ -1,7 +1,7 @@
 package com.company;
 
 
-public class Interceptor implements OutputWriter {
+public class UserOutput implements OutputWriter {
 
     @Override
     public void writeOutput(String output) {
