@@ -19,16 +19,18 @@ public class GameManager {
     }
 
     public void onTick(char c) {
-        board.onTick(c);
-        board.printBoard();
+        //board.onTick(c);
+        //board.printBoard();
     }
 
     public void play() {
         initializePlayer();
         char [][] currLevel= fileParser.readLevel();
         levelInitiallizer(currLevel);
+        board.printBoard();
         while(true){
-        board.onTick();
+            board.onTick();
+            board.printBoard();
         }
 
     }

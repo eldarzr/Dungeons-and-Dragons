@@ -27,7 +27,7 @@ public abstract class Player extends Unit {
 
     }
 
-    public abstract void onGameTick();
+    //public abstract void onGameTick();
     public void onTick(){
 //        String c = userInput.readLine();
 //         while (!(c.length()==1 && "adwseq".contains(c))) {

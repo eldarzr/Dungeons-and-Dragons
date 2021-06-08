@@ -10,6 +10,7 @@ public class Board {
     private List<Enemy> enemies;
     private Player player;
     private UserOutput userOutput;
+    private  UserInput userInput;
 
     public Board(char[][] chars) {
         //tiles= Arrays.stream(board).flatMap(Arrays::stream).collect(Collectors.toList());
@@ -18,6 +19,7 @@ public class Board {
         enemies = new ArrayList<>();
         tiles = new ArrayList<>();
         this.userOutput = new UserOutput();
+        this.userInput = new UserInput();
         //tiles.stream().sorted().map(t -> t.position.x == 5 ? t.toString() + "/n" : t.toString());
     }
 
@@ -55,6 +57,13 @@ public class Board {
 
     public void onTick() {
 
+
+        String s = userInput.readLine();
+        while (!(s.length()==1 && "adwseq".contains(s))) {
+             s = userInput.readLine();
+        }
+
+        char c = s.charAt(0);
 
         Position pos = player.getPosition();
         int x = pos.x;
