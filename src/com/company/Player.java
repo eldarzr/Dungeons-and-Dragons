@@ -4,11 +4,13 @@ public abstract class Player extends Unit {
     public static final char playerTile = '@';
     protected int level;
     protected Experience exp;
+    UserInput userInput;
 
     public Player(Position position,String name, int attackPoints, int defensePoints, Health health) {
         super(playerTile, name, attackPoints, defensePoints, health);
         this.level=1;
         this.exp=new Experience(50,0);
+        userInput= new UserInput();
         initialize(position);
     }
 
@@ -25,7 +27,26 @@ public abstract class Player extends Unit {
 
     }
 
-//public abstract void onGameTick();
+    public abstract void onGameTick();
+    public void onTick(){
+//        String c = userInput.readLine();
+//         while (!(c.length()==1 && "adwseq".contains(c))) {
+//             c = userInput.readLine();
+//         }
+//             onMovePlayer(c.charAt(0));
+
+
+
+        //onGameTick();
+
+
+   }
+
+    private void onMovePlayer(char c) {
+//        if (c=='d')
+//            interact();
+
+    }
 
     @Override
     public void Combat() {
