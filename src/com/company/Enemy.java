@@ -7,7 +7,7 @@ package com.company;
     public Enemy(char tile, String name, int attackPoints, int defensePoints, Health health, int experienceValue) {
         super(tile, name, attackPoints, defensePoints, health);
         this.experienceValue = experienceValue;
-    }
+ }
 
 
 }
