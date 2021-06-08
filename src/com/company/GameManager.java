@@ -58,6 +58,7 @@ public class GameManager {
                 else{
                     Enemy enemy = tf.createEnemy(file[i][j]);
                     enemy.setPosition(pos);
+                    enemy.setOnDeathCallBack(()-> board.removeEnemy(enemy));
                     board.addEnemy(enemy);
                 }
             }

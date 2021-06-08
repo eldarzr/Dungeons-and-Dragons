@@ -101,4 +101,11 @@ public class Board {
         }
         unit.interact(tile);
     }
+
+    public void removeEnemy(Enemy enemy) {
+        Position pos = enemy.position;
+        enemies.remove(enemy);
+        tiles.remove(enemy);
+        tiles.add(new Empty(pos));
+    }
 }
