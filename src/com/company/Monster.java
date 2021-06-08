@@ -1,16 +1,20 @@
 package com.company;
 
+import java.util.Random;
+
 public class Monster extends Enemy {
 
     int visionRange;
+    NumericGenerator numericGenerator;
 
     public Monster(char tile, String name, int attackPoints, int defensePoints, Health health, int experienceValue, int visionRange) {
         super(tile, name, attackPoints, defensePoints, health, experienceValue);
         this.visionRange = visionRange;
+        numericGenerator = new RandomGenerator();
     }
 
-    public void move(){
-
+    public char move(){
+        return numericGenerator.movment();
     }
 
     @Override

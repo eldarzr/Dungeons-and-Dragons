@@ -64,8 +64,15 @@ public class Board {
         }
 
         char c = s.charAt(0);
+        unitTick(player, c);
+        for (Enemy enemy: enemies) {
+            unitTick(enemy, enemy.move());
+        }
 
-        Position pos = player.getPosition();
+    }
+
+    private void unitTick(Unit unit, char c){
+        Position pos = unit.getPosition();
         int x = pos.x;
         int y = pos.y;
 
@@ -92,6 +99,6 @@ public class Board {
             if(t.position.compareTo(position) == 0)
                 tile = t;
         }
-        player.interact(tile);
+        unit.interact(tile);
     }
 }

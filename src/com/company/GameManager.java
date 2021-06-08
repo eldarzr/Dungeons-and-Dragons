@@ -10,6 +10,7 @@ public class GameManager {
     FileParser fileParser;
     Board board;
     Player player;
+    private TilesFactory tf;
 
 
 
@@ -36,7 +37,7 @@ public class GameManager {
     }
 
     private void initializePlayer() {
-        TilesFactory tf = new TilesFactory();
+        tf = new TilesFactory();
         player=tf.createPlayer();
     }
 
@@ -53,6 +54,10 @@ public class GameManager {
                 else if(file[i][j]=='@'){
                     player.setPosition(pos);
                     board.addPlayer(player);
+                }
+                else{
+                    Enemy enemy = tf.createEnemy(file[i][j]);
+                    board.addEnemy(enemy);
                 }
             }
 

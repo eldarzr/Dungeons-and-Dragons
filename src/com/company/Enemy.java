@@ -9,5 +9,6 @@ package com.company;
         this.experienceValue = experienceValue;
     }
 
+     public abstract char move();
 
 }
