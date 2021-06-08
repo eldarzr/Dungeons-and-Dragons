@@ -18,6 +18,7 @@ public class Board {
         enemies = new ArrayList<>();
         tiles = new ArrayList<>();
         this.userOutput = UserOutput.getInstance();
+        tiles.stream().sorted().map(t -> t.position.x == 5 ? t.toString() + "/n" : t.toString());
     }
 
     public void add(Tile tile){
@@ -35,9 +36,14 @@ public class Board {
     }
 
     public void printBoard(){
-        for(int i=0; i<tilesArr.length; i++)
-            //for(int j=0; j<tilesArr[i].length; j++)
-                userOutput.writeOutput(Arrays.toString(tilesArr[i]));
+//        for(int i=0; i<tilesArr.length; i++)
+//            //for(int j=0; j<tilesArr[i].length; j++)
+//                userOutput.writeOutput(Arrays.toString(tilesArr[i]));
+        var v = tiles.stream().sorted()
+                .map(t -> t.position.y == tilesArr[0].length-1 ? t.toString() + "\n" : t.toString())
+                .collect(Collectors.joining(""));
+        userOutput.writeOutput(v);
+
     }
 
 

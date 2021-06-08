@@ -1,5 +1,7 @@
 package com.company;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 public class Main {
 
@@ -8,9 +10,18 @@ public class Main {
         UserOutput userOutput = UserOutput.getInstance();
         UserInput userInput = new UserInput();
         //char[][] levels = readLevel("C:\\Users\\אלדר זריהן\\Documents\\לימודים\\סמסטר ב'\\עקרונות תכנות מונחה עצמים\\dnd demo\\levels_dir\\level0.txt");
-        char[][] levels = readLevel(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath() + "levels_dir/level0.txt");
+        //Path path = Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+        Path currentPath = Paths.get(System.getProperty("user.dir"));
+        currentPath = Paths.get(currentPath.toString(), "levels_dir", "level0.txt");
+        char[][] levels = readLevel(currentPath.toString());
+
         for(char[] carr : levels){
             userOutput.writeOutput(Arrays.toString(carr));
+/*
+initialiter שמאתחל
+        board שמנהל בורד
+        fileParser לשלבים
+         */
         }
        // LevelInit lv = new LevelInit();
        // lv.levelInitiallizer(levels);
