@@ -6,6 +6,7 @@ public abstract class Unit extends Tile{
     protected int attackPoints;
     protected int defensePoints;
     protected Health health;
+    protected boolean alive;
 
    public Unit(char tile,String name, int attackPoints, int defensePoints ,Health health) {
         super(tile);
@@ -13,6 +14,7 @@ public abstract class Unit extends Tile{
         this.attackPoints = attackPoints;
         this.defensePoints = defensePoints;
         this.health=health;
+        this.alive=true;
     }
 
     public Health getHealth() {
@@ -71,7 +73,7 @@ public abstract class Unit extends Tile{
     public abstract void visit(Player p);
     public abstract void visit(Enemy e);
 
-    private void swapPosition(Empty empty) {
+    protected void swapPosition(Empty empty) {
         Position pos = empty.getPosition();
         empty.position = position;
         position=pos;
