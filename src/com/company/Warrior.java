@@ -8,12 +8,15 @@ public class Warrior extends Player {
 
     @Override
     protected int defend() {
-        return 0;
+
+        RandomGenerator rnd = RandomGenerator.getInstance();
+        return rnd.combat(defensePoints);
     }
 
     @Override
     protected int attack() {
-        return 0;
+        RandomGenerator rnd = RandomGenerator.getInstance();
+        return rnd.combat(attackPoints);
     }
 
     @Override
@@ -21,10 +24,6 @@ public class Warrior extends Player {
 
     }
 
-    @Override
-    public void visit(Enemy e) {
-
-    }
 
     @Override
     public void accept(Unit unit) {

@@ -6,6 +6,7 @@ public abstract class Player extends Unit {
     protected Experience exp;
     UserInput userInput;
 
+
     public Player(Position position,String name, int attackPoints, int defensePoints, Health health) {
         super(playerTile, name, attackPoints, defensePoints, health);
         this.level=1;
@@ -46,6 +47,14 @@ public abstract class Player extends Unit {
 //        if (c=='d')
 //            interact();
 
+    }
+
+    public void visit(Enemy e){
+        super.battle(e);
+        if(!e.alive)
+        {
+            //swapPosition(e);
+        }
     }
 
     @Override
