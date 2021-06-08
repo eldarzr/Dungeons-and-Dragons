@@ -12,5 +12,6 @@ public class Health extends Resource {
     }
 
     public void reduceAmount(int damageDone) {
+        amount = amount-damageDone > 0 ? amount-damageDone : 0;
     }
 }

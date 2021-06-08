@@ -51,8 +51,9 @@ public abstract class Player extends Unit {
 
     public void visit(Enemy e){
         super.battle(e);
-        if(!e.alive)
+        if(!e.isAlive())
         {
+            onKill(e);
             //swapPosition(e);
         }
     }
@@ -64,7 +65,8 @@ public abstract class Player extends Unit {
 
     @Override
     protected void onKill(Enemy enemy) {
-
+        exp.onKill(enemy.getExperienceValue());
+        enemy.onDeath();
     }
 
     @Override
@@ -74,7 +76,8 @@ public abstract class Player extends Unit {
 
     @Override
     public void onDeath() {
-
+        character = 'X';
+        messageCallBack.send("Game Over");
     }
 
     public int getLevel() {
@@ -89,4 +92,8 @@ public abstract class Player extends Unit {
         return String.format("%s\t\tLevel: %d\t\tExperience: %d/%d", super.describe(), getLevel(), exp.amount, exp.getPoolbar());
     }
 
+    @Override
+    public void accept(Unit unit) {
+        unit.visit(this);
+    }
 }

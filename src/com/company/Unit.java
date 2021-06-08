@@ -6,7 +6,7 @@ public abstract class Unit extends Tile{
     protected int attackPoints;
     protected int defensePoints;
     protected Health health;
-    protected boolean alive;
+    //protected boolean alive;
 
    public Unit(char tile,String name, int attackPoints, int defensePoints ,Health health) {
         super(tile);
@@ -14,11 +14,19 @@ public abstract class Unit extends Tile{
         this.attackPoints = attackPoints;
         this.defensePoints = defensePoints;
         this.health=health;
-        this.alive=true;
+        //this.alive=true;
     }
 
     public Health getHealth() {
         return health;
+    }
+
+    public boolean isAlive(){
+       return health.amount != 0;
+    }
+
+    public void setMessageCallBack(MessageCallBack messageCallBack){
+       this.messageCallBack = messageCallBack;
     }
 
     public void setHealth(Health health) {

@@ -38,13 +38,13 @@ public class Monster extends Enemy {
 
     @Override
     protected int attack() {
-        return 0;
+        return 1000;
     }
 
-    @Override
-    public void visit(Player p) {
-
-    }
+//    @Override
+//    public void visit(Player p) {
+//
+//    }
 
     @Override
     public void visit(Enemy e) {
@@ -67,14 +67,5 @@ public class Monster extends Enemy {
 
     }
 
-    @Override
-    public void onDeath() {
-
-    }
-
-    @Override
-    public void accept(Unit unit) {
-
-    }
 
 }

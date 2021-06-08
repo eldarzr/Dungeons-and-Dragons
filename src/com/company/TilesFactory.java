@@ -27,10 +27,12 @@ public class TilesFactory {
     }
     private void initializeEnemeys()
     {
-        allEnemeis.put('K',new Monster('K',"Night King",300,150,new Health(5000,5000),5000,8));
+        allEnemeis.put('K',new Monster('K',"Night King",300,150,new Health(5,5),5000,8));
     }
     public Enemy createEnemy(char c)
     {
+        if(c=='K')
+            return new Monster('K',"Night King",30000,150,new Health(5000,5000),5000,8);
         return  allEnemeis.get(c);
 
     }

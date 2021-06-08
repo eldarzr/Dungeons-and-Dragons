@@ -26,12 +26,17 @@ public class GameManager {
 
     public void play() {
         initializePlayer();
-        char [][] currLevel= fileParser.readLevel();
-        levelInitiallizer(currLevel);
-        board.printBoard();
-        while(true){
-            board.onTick();
+        while (player.isAlive()) {
+            char[][] currLevel = fileParser.readLevel();
+            levelInitiallizer(currLevel);
             board.printBoard();
+            boolean isActive = true;
+            while (isActive) {
+                board.onTick();
+                board.printBoard();
+                if (board.getEnemies().size() == 0 | !player.isAlive())
+                    isActive = false;
+            }
         }
 
     }

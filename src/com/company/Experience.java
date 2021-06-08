@@ -10,4 +10,8 @@ public class Experience extends Resource{
         poolbar = level * 50;
         amount = 0;
     }
+
+    public void onKill(int exp){
+        amount+= exp;
+    }
 }

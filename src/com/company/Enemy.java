@@ -2,7 +2,11 @@ package com.company;
 
  public abstract class Enemy extends Unit {
 
-    private int experienceValue;
+     public int getExperienceValue() {
+         return experienceValue;
+     }
+
+     private int experienceValue;
     protected EnemyDeathCallBack enemyDeathCallBack;
 
     public Enemy(char tile, String name, int attackPoints, int defensePoints, Health health, int experienceValue) {
@@ -22,7 +26,7 @@ package com.company;
      @Override
      public void visit(Player p) {
          super.battle(p);
-         if(!p.alive)
+         if(!p.isAlive())
              p.onDeath();
      }
 

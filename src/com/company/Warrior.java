@@ -25,9 +25,9 @@ public class Warrior extends Player {
     }
 
 
-    @Override
-    public void accept(Unit unit) {
-   //     unit.visit(this);
-
-    }
+//    @Override
+//    public void accept(Unit unit) {
+//   //     unit.visit(this);
+//
+//    }
 }

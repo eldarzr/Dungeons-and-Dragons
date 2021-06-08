@@ -10,7 +10,7 @@ public class Board {
     private List<Enemy> enemies;
     private Player player;
     private UserOutput userOutput;
-    private  UserInput userInput;
+    private UserInput userInput;
 
     public Board(char[][] chars) {
         //tiles= Arrays.stream(board).flatMap(Arrays::stream).collect(Collectors.toList());
@@ -23,6 +23,10 @@ public class Board {
         //tiles.stream().sorted().map(t -> t.position.x == 5 ? t.toString() + "/n" : t.toString());
     }
 
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
     public void add(Tile tile){
         tiles.add(tile);
         Position pos = tile.position;
@@ -32,11 +36,17 @@ public class Board {
     public void addEnemy(Enemy enemy){
         enemies.add(enemy);
         add(enemy);
+        enemy.setMessageCallBack(s-> userOutput.writeOutput(s));
     }
 
     public void addPlayer(Player player){
         this.player = player;
         add(player);
+        player.setMessageCallBack(s-> userOutput.writeOutput(s));
+    }
+
+    public void gameOver(String s){
+        userOutput.writeOutput(s);
     }
 
     public void printBoard(){
@@ -93,8 +103,14 @@ public class Board {
 
         //tilesArr[player.position.x ][player.position.y] = player;
 
-        Tile tile = null;
+
         Position position = new Position(x,y);
+        interact(position, unit);
+
+    }
+
+    public void interact(Position position, Unit unit){
+        Tile tile = null;
         for (Tile t: tiles) {
             if(t.position.compareTo(position) == 0)
                 tile = t;
@@ -106,6 +122,9 @@ public class Board {
         Position pos = enemy.position;
         enemies.remove(enemy);
         tiles.remove(enemy);
-        tiles.add(new Empty(pos));
+        Empty empty = new Empty(pos);
+        tiles.add(empty);
+        player.interact(empty);
+
     }
 }
