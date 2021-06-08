@@ -16,6 +16,7 @@ public class TilesFactory {
         userOutput = new UserOutput();
         allEnemeis=new HashMap<Character, Enemy>();
         initializePlayers();
+        initializeEnemeys();
     }
 
     private void initializePlayers() {

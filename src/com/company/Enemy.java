@@ -9,6 +9,6 @@ package com.company;
         this.experienceValue = experienceValue;
  }
 
-     public abstract char move();
+     public abstract char move(Player player);
 
 }

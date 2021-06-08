@@ -13,7 +13,21 @@ public class Monster extends Enemy {
         numericGenerator = new RandomGenerator();
     }
 
-    public char move(){
+    @Override
+    public char move(Player player){
+        Position pp = player.position;
+        if(position.range(pp) < visionRange){
+            int dx = position.x - pp.x;
+            int dy = position.y - pp.y;
+            if(Math.abs(dx) > Math.abs(dy)) {
+                if (dx > 0)
+                    return 'w';
+                else return 's';
+            }
+            else if(dy > 0)
+                return 'a';
+            else return 'd';
+        }
         return numericGenerator.movment();
     }
 
@@ -62,4 +76,5 @@ public class Monster extends Enemy {
     public void accept(Unit unit) {
 
     }
+
 }

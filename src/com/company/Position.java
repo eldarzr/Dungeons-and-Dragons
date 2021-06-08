@@ -34,8 +34,8 @@ public class Position {
 
     public double range(int x, int y)
     {
-        double disX = Math.exp(this.x-x);
-        double disY = Math.exp(this.y-y);
+        double disX = Math.pow(this.x-x,2);
+        double disY = Math.pow(this.y-y,2);
         return Math.sqrt(disX+disY);
     }
 

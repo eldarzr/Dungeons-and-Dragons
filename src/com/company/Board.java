@@ -66,7 +66,7 @@ public class Board {
         char c = s.charAt(0);
         unitTick(player, c);
         for (Enemy enemy: enemies) {
-            unitTick(enemy, enemy.move());
+            unitTick(enemy, enemy.move(player));
         }
 
     }
