@@ -17,8 +17,8 @@ public class Board {
         tilesArr = new Tile[chars.length][chars[0].length];
         enemies = new ArrayList<>();
         tiles = new ArrayList<>();
-        this.userOutput = UserOutput.getInstance();
-        tiles.stream().sorted().map(t -> t.position.x == 5 ? t.toString() + "/n" : t.toString());
+        this.userOutput = new UserOutput();
+        //tiles.stream().sorted().map(t -> t.position.x == 5 ? t.toString() + "/n" : t.toString());
     }
 
     public void add(Tile tile){
@@ -29,10 +29,12 @@ public class Board {
 
     public void addEnemy(Enemy enemy){
         enemies.add(enemy);
+        add(enemy);
     }
 
     public void addPlayer(Player player){
         this.player = player;
+        add(player);
     }
 
     public void printBoard(){
@@ -51,24 +53,36 @@ public class Board {
         return player;
     }
 
-    public void onTick(char c) {
+    public void onTick() {
+
+
         Position pos = player.getPosition();
-        int currentPos = pos.getX()+1;
-        Tile t =null;
+        int x = pos.x;
+        int y = pos.y;
+
+        //Tile t =null;
         if(c == 'd')
-            t = tilesArr[pos.x][pos.y+1];
+            //t = tilesArr[pos.x][pos.y+1];
+            y++;
         else if (c== 'a')
-            t = tilesArr[pos.x][pos.y-1];
+            //t = tilesArr[pos.x][pos.y-1];
+            y--;
         else if (c== 'w')
-            t = tilesArr[pos.x-1][pos.y];
+            //t = tilesArr[pos.x-1][pos.y];
+            x--;
         else if (c== 's')
-            t = tilesArr[pos.x+1][pos.y];
-        player.interact(t);
+            //t = tilesArr[pos.x+1][pos.y];
+            x++;
+        //player.interact(t);
 
-        tilesArr[player.position.x ][player.position.y] = player;
+        //tilesArr[player.position.x ][player.position.y] = player;
 
-        for (Tile tile: tiles) {
-            tilesArr[tile.position.x][tile.position.y] = tile;
+        Tile tile = null;
+        Position position = new Position(x,y);
+        for (Tile t: tiles) {
+            if(t.position.compareTo(position) == 0)
+                tile = t;
         }
+        player.interact(tile);
     }
 }
