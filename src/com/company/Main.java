@@ -6,35 +6,39 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws URISyntaxException {
-	// write your code here
-        UserOutput userOutput = UserOutput.getInstance();
-        UserInput userInput = new UserInput();
-        //char[][] levels = readLevel("C:\\Users\\אלדר זריהן\\Documents\\לימודים\\סמסטר ב'\\עקרונות תכנות מונחה עצמים\\dnd demo\\levels_dir\\level0.txt");
-        //Path path = Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-        Path currentPath = Paths.get(System.getProperty("user.dir"));
-        currentPath = Paths.get(currentPath.toString(), "levels_dir", "level0.txt");
-        char[][] levels = readLevel(currentPath.toString());
+        // write your code here
+        GameManager gm = new GameManager();
+        gm.play();
 
-        for(char[] carr : levels){
-            userOutput.writeOutput(Arrays.toString(carr));
+
+//        UserInput userInput = new UserInput();
+//
+//
+//
+//        Path currentPath = Paths.get(System.getProperty("user.dir"));
+//        currentPath = Paths.get(currentPath.toString(), "levels_dir", "level0.txt");
+//        char[][] levels = readLevel(currentPath.toString());
+
 /*
 initialiter שמאתחל
         board שמנהל בורד
         fileParser לשלבים
          */
-        }
-       // LevelInit lv = new LevelInit();
-       // lv.levelInitiallizer(levels);
-
-        GameManager gm = new GameManager();
-        gm.levelInitiallizer(levels);
-
-        while (true){
-            char c = userInput.readLine().charAt(0);
-            gm.onTick(c);
-
-        }
     }
+    // LevelInit lv = new LevelInit();
+    // lv.levelInitiallizer(levels);
+
+//        gm.levelInitiallizer(levels);
+
+//        while(true)
+//
+//    {
+//        char c = userInput.readLine().charAt(0);
+//        gm.onTick(c);
+//
+//    }
+
+
 
     public static char[][] readLevel(String path) {
         FileInput fileInput = new FileInput(path);

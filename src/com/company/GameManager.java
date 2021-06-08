@@ -1,4 +1,5 @@
 package com.company;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -6,11 +7,35 @@ import java.util.Collections;
 import java.util.List;
 
 public class GameManager {
+    FileParser fileParser;
     Board board;
     Player player;
 
-    public GameManager() {
 
+
+    public GameManager() {
+        fileParser = new FileParser();
+
+    }
+
+    public void onTick(char c) {
+        board.onTick(c);
+        board.printBoard();
+    }
+
+    public void play() {
+        initializePlayer();
+        char [][] currLevel= fileParser.readLevel();
+        levelInitiallizer(currLevel);
+        while(true){
+        board.onTick();
+        }
+
+    }
+
+    private void initializePlayer() {
+        TilesFactory tf = new TilesFactory();
+        player=tf.createPlayer();
     }
 
     public void levelInitiallizer(char[][]file )
@@ -23,20 +48,13 @@ public class GameManager {
                     board.add(new Empty(pos));
                 else if(file[i][j]=='#')
                     board.add(new Wall(pos));
-                else if(file[i][j]=='@') {
-                    board.addPlayer(new Warrior(pos,"Eldar", 99999, 10, new Health(1000, 1000)));
-                    player = new Warrior(pos,"Eldar", 99999, 10, new Health(1000, 1000));
-
+                else if(file[i][j]=='@'){
+                    player.setPosition(pos);
+                    board.addPlayer(player);
                 }
             }
 
         }
 
-    }
-
-
-    public void onTick(char c) {
-        board.onTick(c);
-        board.printBoard();
     }
 }
