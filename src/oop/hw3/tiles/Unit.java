@@ -66,7 +66,7 @@ public abstract class Unit extends Tile{
        messageCallBack.send(String.format("%s engaged in combat with %s.\n%s\n%s" ,getName(),u.getName(),describe(),u.describe()));
        int damageDone=Math.max(attack() - u.defend(),0);
        u.health.reduceAmount(damageDone);
-        messageCallBack.send(String.format("%s dealt %d damage to %s." ,getName(),damageDone,u.getName()));
+       messageCallBack.send(String.format("%s dealt %d damage to %s." ,getName(),damageDone,u.getName()));
 
     }
 
@@ -107,4 +107,8 @@ public abstract class Unit extends Tile{
     public String describe() {
         return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", getName(), getHealth(), getAttackPoints(), getDefensePoints());
     }
+
+    public abstract void castSpecialAbility(Enemy enemy);
+
+    public abstract void onTick();
 }

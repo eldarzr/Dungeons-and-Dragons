@@ -15,6 +15,7 @@ public class Board {
     private Player player;
     private UserOutput userOutput;
     private UserInput userInput;
+    private int maxX, maxY;
 
     public Board(char[][] chars) {
         //tiles= Arrays.stream(board).flatMap(Arrays::stream).collect(Collectors.toList());
@@ -24,6 +25,8 @@ public class Board {
         tiles = new ArrayList<>();
         this.userOutput = new UserOutput();
         this.userInput = new UserInput();
+        maxX = chars.length-1;
+        maxY = chars[0].length-1;
         //tiles.stream().sorted().map(t -> t.position.x == 5 ? t.toString() + "/n" : t.toString());
     }
 
@@ -57,10 +60,11 @@ public class Board {
 //        for(int i=0; i<tilesArr.length; i++)
 //            //for(int j=0; j<tilesArr[i].length; j++)
 //                userOutput.writeOutput(Arrays.toString(tilesArr[i]));
-        var v = tiles.stream().sorted()
-                .map(t -> t.getPosition().y == tilesArr[0].length-1 ? t.toString() + "\n" : t.toString())
+        String boardPrint = tiles.stream().sorted()
+                .map(t -> t.getPosition().y == maxY ? t.toString() + "\n" : t.toString())
                 .collect(Collectors.joining(""));
-        userOutput.writeOutput(v);
+        boardPrint+= "\n" + player.describe() + "\n";
+        userOutput.writeOutput(boardPrint);
 
     }
 
@@ -103,6 +107,10 @@ public class Board {
         else if (c== 's')
             //t = tilesArr[pos.x+1][pos.y];
             x++;
+        else if(c == 'e') {
+            List<Enemy> en = enemies.stream().filter(e -> e.getPosition().range(pos) < 3).collect(Collectors.toList());
+            unit.castSpecialAbility(en.get(RandomGenerator.getInstance().combat(en.size())));
+        }
         //player.interact(t);
 
         //tilesArr[player.position.x ][player.position.y] = player;
@@ -110,7 +118,7 @@ public class Board {
 
         Position position = new Position(x,y);
         interact(position, unit);
-
+        unit.onTick();
     }
 
     public void interact(Position position, Unit unit){

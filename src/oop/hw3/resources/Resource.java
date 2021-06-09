@@ -25,7 +25,7 @@ abstract class Resource {
         this.amount = amount;
     }
 
-    public abstract void onLevelUp(int level);
+    public abstract void onLevelUp(int level, int inc);
 
     @Override
     public String toString(){

@@ -21,10 +21,10 @@ public abstract class Player extends Unit {
     }
 
     protected void onLevelUp(){
-     exp.onLevelUp(level);
      level++;
-     health.onLevelUp(level);
-     setAttackPoints(attackPoints+level*4);
+     exp.onLevelUp(level, 50);
+     health.onLevelUp(level, 10);
+     setAttackPoints(attackPoints+(level*4));
      setDefensePoints(defensePoints+level);
     }
 
@@ -34,7 +34,7 @@ public abstract class Player extends Unit {
     }
 
     //public abstract void onGameTick();
-    public void onTick(){
+    public abstract void onTick();
 //        String c = userInput.readLine();
 //         while (!(c.length()==1 && "adwseq".contains(c))) {
 //             c = userInput.readLine();
@@ -46,7 +46,7 @@ public abstract class Player extends Unit {
         //onGameTick();
 
 
-   }
+//   }
 
     private void onMovePlayer(char c) {
 //        if (c=='d')
@@ -103,4 +103,6 @@ public abstract class Player extends Unit {
     public void accept(Unit unit) {
         unit.visit(this);
     }
+
+    public abstract void castSpecialAbility(Enemy e);
 }

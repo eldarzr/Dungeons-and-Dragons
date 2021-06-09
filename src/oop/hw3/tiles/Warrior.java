@@ -1,12 +1,16 @@
 package oop.hw3.tiles;
 
 import oop.hw3.Position;
+import oop.hw3.resources.Cooldown;
 import oop.hw3.resources.Health;
 
 public class Warrior extends Player {
 
-    public Warrior(Position position, String name, int attackPoints, int defensePoints, Health health) {
+    private Cooldown cooldown;
+
+    public Warrior(Position position, String name, int attackPoints, int defensePoints, Health health, int cooldown) {
         super(position,name, attackPoints, defensePoints, health);
+        this.cooldown = new Cooldown(cooldown);
     }
 
 //    @Override
@@ -27,8 +31,38 @@ public class Warrior extends Player {
 
     }
 
+    @Override
+    public void castSpecialAbility(Enemy e) {
+        if(!cooldown.onAbilityCast())
+            messageCallBack.send(String.format("%s doesnt have enought cooldown\n", getName()));
+        else {
+            health.setAmount(10 * defensePoints);
+            messageCallBack.send(String.format("%s casted special ability on %s.\n%s\n%s", getName(), e.getName(), describe(), e.describe()));
+            int damageDone = Math.max((int)(health.getPoolbar()*0.1) - e.defend(), 0);
+            e.health.reduceAmount(damageDone);
+            messageCallBack.send(String.format("%s dealt %d damage to %s.", getName(), damageDone, e.getName()));
+            if(!e.isAlive())
+            {
+                onKill(e);
+            }
+        }
+    }
 
-//    @Override
+    @Override
+    protected void onLevelUp() {
+        level++;
+        cooldown.onLevelUp();
+        health.onLevelUp(level, 5);
+        setAttackPoints(attackPoints+(level*2));
+        setDefensePoints(defensePoints+level);
+    }
+
+    @Override
+    public void onTick() {
+        cooldown.onTick();
+    }
+
+    //    @Override
 //    public void accept(Unit unit) {
 //   //     unit.visit(this);
 //

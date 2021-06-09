@@ -29,8 +29,8 @@ public class TilesFactory {
     private void initializePlayers() {
         Position pos = new Position(0, 0);
         allPlayers = new Player[3];
-        allPlayers[1] = new Warrior(pos, "Jhon Snow", 30, 4, new Health(300));
-        allPlayers[2]= new Warrior(pos, "The Hound", 20, 6, new Health(400));
+        allPlayers[1] = new Warrior(pos, "Jhon Snow", 30, 4, new Health(300), 3);
+        allPlayers[2]= new Warrior(pos, "The Hound", 20, 6, new Health(400), 5);
     }
     private void initializeEnemeys()
     {
@@ -49,7 +49,8 @@ public class TilesFactory {
        boolean isPlayerCreated = false;
         Player p = null;
        while(!isPlayerCreated) {
-           userOutput.writeOutput(Arrays.toString(allPlayers));
+           //userOutput.writeOutput(Arrays.toString(allPlayers));
+           printPlayers();
            try {
                int num = Integer.parseInt(userInput.readLine());
                p = createPlayer(num);
@@ -64,6 +65,14 @@ public class TilesFactory {
 
        }
        return  p;
+    }
+
+    private void printPlayers() {
+        String playersS = "";
+        for (int i=1; i<allPlayers.length; i++){
+            playersS+= i + ". " + allPlayers[i].describe() + "\n";
+        }
+        userOutput.writeOutput(playersS);
     }
 
     public Player createPlayer(int num)

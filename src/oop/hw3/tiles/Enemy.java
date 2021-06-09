@@ -41,4 +41,14 @@ public abstract class Enemy extends Unit {
      public void accept(Unit unit){
          unit.visit(this);
      }
- }
+
+    @Override
+    public void castSpecialAbility(Enemy enemy) {
+
+    }
+
+    @Override
+    public void onTick() {
+
+    }
+}

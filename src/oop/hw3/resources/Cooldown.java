@@ -1,10 +1,10 @@
 package oop.hw3.resources;
 
-public class Colldown {
+public class Cooldown {
     private int abilityCooldown;
     private int remainingCooldown;
 
-    public Colldown(int abilityCooldown) {
+    public Cooldown(int abilityCooldown) {
         this.abilityCooldown = abilityCooldown;
         this.remainingCooldown = 0;
     }
@@ -26,7 +26,7 @@ public class Colldown {
     }
 
     public void onTick(){
-        if(remainingCooldown >= 0)
+        if(remainingCooldown > 0)
             remainingCooldown--;
     }
 

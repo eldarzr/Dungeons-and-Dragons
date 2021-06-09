@@ -6,7 +6,8 @@ public class Experience extends Resource{
         super(poolbar, amount);
     }
 
-    public void onLevelUp(int level) {
+
+    public void onLevelUp(int level, int inc) {
         poolbar = level * 50;
         amount = 0;
     }
