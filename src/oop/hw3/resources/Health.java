@@ -15,9 +15,8 @@ public class Health extends Resource {
         amount = amount-damageDone > 0 ? amount-damageDone : 0;
     }
 
-    @Override
-    public void setAmount(int amount) {
-        this.amount = Math.min(this.amount + (amount*10), poolbar);
+    public void addHealth(int amount) {
+        this.amount = Math.min(this.amount + amount, poolbar);
     }
 
 }

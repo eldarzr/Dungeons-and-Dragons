@@ -7,6 +7,7 @@ import oop.hw3.tiles.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class TilesFactory {
     private UserInput userInput ;
@@ -20,26 +21,46 @@ public class TilesFactory {
         userOutput = new UserOutput();
         allEnemeis=new HashMap<Character, Enemy>();
         initializePlayers();
-        initializeEnemeys();
     }
 
     private void initializePlayers() {
         Position pos = new Position(0, 0);
-        allPlayers = new Player[3];
+        allPlayers = new Player[4];
         allPlayers[1] = new Warrior(pos, "Jhon Snow", 30, 4, new Health(300), 3);
         allPlayers[2]= new Warrior(pos, "The Hound", 20, 6, new Health(400), 5);
+        allPlayers[3]= new Rogue(pos, "Arya Stark", 40, 2, new Health(150), 20);
     }
-    private void initializeEnemeys()
-    {
-        allEnemeis.put('K',new Monster('K',"Night King",30000,150,new Health(5),5000,8));
-    }
+
     public Enemy createEnemy(char c)
     {
+        if(c=='s')
+            return new Monster('s',"Lannister Solider",8,3,new Health(80),25,3);
+        if(c=='k')
+            return new Monster('k',"Lannister Knight",14,8,new Health(200),50,4);
+        if(c=='q')
+            return new Monster('q',"Queen’s Guard",20,15,new Health(400),100,5);
+        if(c=='z')
+            return new Monster('z',"Wright",30,15,new Health(600),100,3);
+        if(c=='b')
+            return new Monster('b',"Bear-Wright",75,30,new Health(1000),250,4);
+        if(c=='g')
+            return new Monster('g',"Giant-Wright",100,40,new Health(1500),500,5);
+        if(c=='w')
+            return new Monster('w',"White Walker",150,50,new Health(2000),1000,6);
+        if(c=='M')
+            return new Monster('M',"The Mountain",60,25,new Health(1000),500,6);
+        if(c=='C')
+            return new Monster('C',"Queen Cersei",10,10,new Health(100),1000,1);
         if(c=='K')
-            return new Monster('K',"Night King",30000,5,new Health(50),500,8);
+            return new Monster('K',"Night King",300,150,new Health(5000),5000,8);
         if(c=='B')
             return new Trap ( 'B',"Bonus Trap",1,1 , new Health(1),250,1,5);
-    return  allEnemeis.get(c);
+        if(c=='Q')
+            return new Trap ( 'Q',"Queen’s Trap",50,10 , new Health(250),100,3,7);
+        if(c=='D')
+            return new Trap ( 'D',"Death Trap",100,20 , new Health(500),250,1,10);
+
+        return  null;
 
     }
 

@@ -11,24 +11,14 @@ import java.util.stream.Collectors;
 public class Warrior extends Player {
 
     private Cooldown cooldown;
+    private final int HEALTH_ADDITION = 10;
+    private final String SPECIAL_ABILITY_NAME = "Avenger’s Shield";
+
 
     public Warrior(Position position, String name, int attackPoints, int defensePoints, Health health, int cooldown) {
         super(position,name, attackPoints, defensePoints, health);
         this.cooldown = new Cooldown(cooldown);
     }
-
-//    @Override
-//    protected int defend() {
-//
-//        RandomGenerator rnd = RandomGenerator.getInstance();
-//        return rnd.combat(defensePoints);
-//    }
-//
-//    @Override
-//    protected int attack() {
-//        RandomGenerator rnd = RandomGenerator.getInstance();
-//        return rnd.combat(attackPoints);
-//    }
 
     @Override
     public void visit(Player p) {
@@ -43,19 +33,19 @@ public class Warrior extends Player {
             return;
         }
         Enemy e = enemies.get(RandomGenerator.getInstance().range(enemies.size()));
-        if(!cooldown.onAbilityCast())
-            messageCallBack.send(String.format("%s doesnt have enought cooldown\n", getName()));
-        else {
-            health.setAmount(10 * defensePoints);
-            messageCallBack.send(String.format("%s casted special ability on %s.\n%s\n%s", getName(), e.getName(), describe(), e.describe()));
-            int damageDone = Math.max((int)(health.getPoolbar()*0.1) - e.defend(), 0);
-            e.health.reduceAmount(damageDone);
-            messageCallBack.send(String.format("%s dealt %d damage to %s.", getName(), damageDone, e.getName()));
-            if(!e.isAlive())
-            {
-                onKill(e);
-            }
+        if(!cooldown.onAbilityCast()) {
+            messageCallBack.send(String.format("%s doesnt have enough energy for %s\n", getName(), SPECIAL_ABILITY_NAME));
+            return;
         }
+        health.addHealth(HEALTH_ADDITION * defensePoints);
+        messageCallBack.send(String.format("%s casted %s on %s.\n%s\n%s", getName(), SPECIAL_ABILITY_NAME, e.getName(), describe(), e.describe()));
+        int defence = e.defend();
+        int damageDone = Math.max((int) (health.getPoolbar() * 0.1) - defence, 0);
+        e.health.reduceAmount(damageDone);
+        messageCallBack.send(String.format("%s rolled %d defense points", e.getName(), defence));
+        messageCallBack.send(String.format("%s dealt %d damage to %s.", getName(), damageDone, e.getName()));
+        if (!e.isAlive())
+            onKill(e);
     }
 
     @Override
@@ -72,9 +62,4 @@ public class Warrior extends Player {
         cooldown.onTick();
     }
 
-    //    @Override
-//    public void accept(Unit unit) {
-//   //     unit.visit(this);
-//
-//    }
 }

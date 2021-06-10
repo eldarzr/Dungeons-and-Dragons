@@ -7,7 +7,7 @@ import java.util.List;
 public class FileParser {
 
     Path currentPath;
-    int level = 0;
+    int level = 1;
 
     public FileParser() {
         currentPath = Paths.get(System.getProperty("user.dir"));
