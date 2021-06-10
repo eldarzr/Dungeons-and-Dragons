@@ -26,13 +26,14 @@ public class TilesFactory {
 
     private void initializePlayers() {
         Position pos = new Position(0, 0);
-        allPlayers = new Player[7];
+        allPlayers = new Player[8];
         allPlayers[1] = new Warrior(pos, "Jhon Snow", 30, 4, new Health(300), 3);
         allPlayers[2]= new Warrior(pos, "The Hound", 20, 6, new Health(400), 5);
         allPlayers[3]= new Mage(pos,"Melisandra",5,1,new Health(100),new Mana(300,30),5,6,15);
         allPlayers[4]= new Mage(pos,"Thoros of Myr",25,4,new Health(250),new Mana(150,20),3,4,20);
         allPlayers[5]= new Rogue(pos, "Arya Stark", 40, 2, new Health(150), 20);
         allPlayers[6]= new Rogue(pos, "Bronn", 35, 3, new Health(250), 50);
+        allPlayers[7]= new Hunter(pos,"Ygritte",30,2,new Health(220),6);
 
     }
 
