@@ -108,8 +108,7 @@ public class Board {
             //t = tilesArr[pos.x+1][pos.y];
             x++;
         else if(c == 'e') {
-            List<Enemy> en = enemies.stream().filter(e -> e.getPosition().range(pos) < 3).collect(Collectors.toList());
-            unit.castSpecialAbility(en.get(RandomGenerator.getInstance().combat(en.size())));
+            unit.castSpecialAbility(enemies);
         }
         //player.interact(t);
 

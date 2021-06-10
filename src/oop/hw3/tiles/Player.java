@@ -104,5 +104,4 @@ public abstract class Player extends Unit {
         unit.visit(this);
     }
 
-    public abstract void castSpecialAbility(Enemy e);
 }

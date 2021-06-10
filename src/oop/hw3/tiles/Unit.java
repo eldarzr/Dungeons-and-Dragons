@@ -5,6 +5,8 @@ import oop.hw3.Position;
 import oop.hw3.RandomGenerator;
 import oop.hw3.resources.Health;
 
+import java.util.List;
+
 public abstract class Unit extends Tile{
     protected MessageCallBack messageCallBack;
     protected String name;
@@ -108,7 +110,7 @@ public abstract class Unit extends Tile{
         return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", getName(), getHealth(), getAttackPoints(), getDefensePoints());
     }
 
-    public abstract void castSpecialAbility(Enemy enemy);
+    public abstract void castSpecialAbility(List<Enemy> enemy);
 
     public abstract void onTick();
 }

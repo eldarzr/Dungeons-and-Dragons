@@ -1,8 +1,12 @@
 package oop.hw3.tiles;
 
 import oop.hw3.Position;
+import oop.hw3.RandomGenerator;
 import oop.hw3.resources.Cooldown;
 import oop.hw3.resources.Health;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Warrior extends Player {
 
@@ -32,7 +36,13 @@ public class Warrior extends Player {
     }
 
     @Override
-    public void castSpecialAbility(Enemy e) {
+    public void castSpecialAbility(List<Enemy> enemies) {
+        enemies = enemies.stream().filter(e -> e.getPosition().range(position) < 3).collect(Collectors.toList());
+        if(enemies.size()==0) {
+            messageCallBack.send(String.format("no enemy is in %s area", getName()));
+            return;
+        }
+        Enemy e = enemies.get(RandomGenerator.getInstance().combat(enemies.size()));
         if(!cooldown.onAbilityCast())
             messageCallBack.send(String.format("%s doesnt have enought cooldown\n", getName()));
         else {

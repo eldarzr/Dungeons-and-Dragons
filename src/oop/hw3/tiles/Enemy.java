@@ -3,6 +3,8 @@ package oop.hw3.tiles;
 import oop.hw3.EnemyDeathCallBack;
 import oop.hw3.resources.Health;
 
+import java.util.List;
+
 public abstract class Enemy extends Unit {
 
      public int getExperienceValue() {
@@ -43,7 +45,7 @@ public abstract class Enemy extends Unit {
      }
 
     @Override
-    public void castSpecialAbility(Enemy enemy) {
+    public void castSpecialAbility(List<Enemy> enemy) {
 
     }
 
