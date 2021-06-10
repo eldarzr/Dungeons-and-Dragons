@@ -21,6 +21,9 @@ public class RandomGenerator implements NumericGenerator{
 
     public int combat(int num) {
         return (int)(Math.random()*(num+1));
+    }
 
+    public int range(int num) {
+        return (int)(Math.random()*num);
     }
 }

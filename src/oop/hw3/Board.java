@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class Board {
 
-    private Tile[][] tilesArr;
     private List<Tile> tiles;
     private List<Enemy> enemies;
     private Player player;
@@ -18,16 +17,12 @@ public class Board {
     private int maxX, maxY;
 
     public Board(char[][] chars) {
-        //tiles= Arrays.stream(board).flatMap(Arrays::stream).collect(Collectors.toList());
-        //enemies = Arrays.stream(board).flatMap(Arrays::stream).collect(Collectors.toList())
-        tilesArr = new Tile[chars.length][chars[0].length];
         enemies = new ArrayList<>();
         tiles = new ArrayList<>();
         this.userOutput = new UserOutput();
         this.userInput = new UserInput();
         maxX = chars.length-1;
         maxY = chars[0].length-1;
-        //tiles.stream().sorted().map(t -> t.position.x == 5 ? t.toString() + "/n" : t.toString());
     }
 
     public List<Enemy> getEnemies() {
@@ -37,7 +32,6 @@ public class Board {
     public void add(Tile tile){
         tiles.add(tile);
         Position pos = tile.getPosition();
-        tilesArr[pos.x][pos.y] = tile;
     }
 
     public void addEnemy(Enemy enemy){
@@ -57,9 +51,6 @@ public class Board {
     }
 
     public void printBoard(){
-//        for(int i=0; i<tilesArr.length; i++)
-//            //for(int j=0; j<tilesArr[i].length; j++)
-//                userOutput.writeOutput(Arrays.toString(tilesArr[i]));
         String boardPrint = tiles.stream().sorted()
                 .map(t -> t.getPosition().y == maxY ? t.toString() + "\n" : t.toString())
                 .collect(Collectors.joining(""));
@@ -94,27 +85,17 @@ public class Board {
         int x = pos.x;
         int y = pos.y;
 
-        //Tile t =null;
         if(c == 'd')
-            //t = tilesArr[pos.x][pos.y+1];
             y++;
         else if (c== 'a')
-            //t = tilesArr[pos.x][pos.y-1];
             y--;
         else if (c== 'w')
-            //t = tilesArr[pos.x-1][pos.y];
             x--;
         else if (c== 's')
-            //t = tilesArr[pos.x+1][pos.y];
             x++;
         else if(c == 'e') {
             unit.castSpecialAbility(enemies);
         }
-        //player.interact(t);
-
-        //tilesArr[player.position.x ][player.position.y] = player;
-
-
         Position position = new Position(x,y);
         interact(position, unit);
         unit.onTick();
@@ -122,10 +103,8 @@ public class Board {
 
     public void interact(Position position, Unit unit){
         Tile tile = null;
-        for (Tile t: tiles) {
-            if(t.getPosition().compareTo(position) == 0)
-                tile = t;
-        }
+        tile = tiles.stream().filter(t -> t.getPosition().compareTo(position) == 0)
+                .collect(Collectors.toList()).get(0);
         unit.interact(tile);
     }
 

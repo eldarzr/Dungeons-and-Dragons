@@ -31,12 +31,12 @@ public class TilesFactory {
     }
     private void initializeEnemeys()
     {
-        allEnemeis.put('K',new Monster('K',"Night King",300,150,new Health(5),5000,8));
+        allEnemeis.put('K',new Monster('K',"Night King",30000,150,new Health(5),5000,8));
     }
     public Enemy createEnemy(char c)
     {
         if(c=='K')
-            return new Monster('K',"Night King",30,5,new Health(50),500,8);
+            return new Monster('K',"Night King",30000,5,new Health(50),500,8);
         if(c=='B')
             return new Trap ( 'B',"Bonus Trap",1,1 , new Health(1),250,1,5);
     return  allEnemeis.get(c);
