@@ -13,6 +13,10 @@ public class Mage extends Player {
     private int hitsCount;
     private int abilityRange;
     private int spellPower;
+    private final String SPECIAL_ABILITY_NAME = "Blizzard";
+    private final int MANA_ADDITIONAL =25;
+    private final int SPELLPOWER_ADDITIONAL=10;
+
 
     public Mage(Position position, String name, int attackPoints, int defensePoints, Health health, Mana mana, int hitsCount, int abilityRange, int spellPower) {
         super(position, name, attackPoints, defensePoints, health);
@@ -22,29 +26,34 @@ public class Mage extends Player {
         this.spellPower = spellPower;
     }
 
-    @Override
-    public void visit(Player p) {
-
-    }
 
     protected void onLevelUp() {
+        int healthIncreased=health.getPoolbar();
+        int manaIncreased=mana.getPoolbar();
+        int attackIncreased=attackPoints;
+        int defenceIncreased=defensePoints;
         super.onLevelUp();
-        mana.onLevelUp(level,25);
-        spellPower=spellPower+(10*level);
+        mana.onLevelUp(level,MANA_ADDITIONAL);
+        spellPower=spellPower+(SPELLPOWER_ADDITIONAL*level);
+        healthIncreased=health.getPoolbar()-healthIncreased;
+        attackIncreased=attackPoints-attackIncreased;
+        defenceIncreased=defensePoints-defenceIncreased;
+        manaIncreased=mana.getPoolbar()-manaIncreased;
+        messageCallBack.send(String.format("%s reached level %d : +%d Health, +%d Mana, +%d Attack, +%d Defence", getName(), level,healthIncreased,manaIncreased,attackIncreased,defenceIncreased));
     }
 
     @Override
     public void castSpecialAbility(List<Enemy> enemies) {
         int hits=0;
         enemies = enemies.stream().filter(e -> e.getPosition().range(position) < abilityRange).collect(Collectors.toList());
+        if ((!mana.onAbilityCast()) && enemies.size()>0) {
+            messageCallBack.send(String.format("%s doesnt have enough mana\n", getName()));
+            return;
+        }
         while(hits<hitsCount && enemies.size()>0) {
             Enemy enemy = enemies.get(RandomGenerator.getInstance().range(enemies.size()));
-            if (!mana.onAbilityCast()) {
-                messageCallBack.send(String.format("%s doesnt have enough mana\n", getName()));
-                  return;
-            }
-            else {
-                messageCallBack.send(String.format("%s cast Blizzard", getName()));
+
+                messageCallBack.send(String.format("%s cast %s", getName(),SPECIAL_ABILITY_NAME));
                 int defence = enemy.defend();
                 messageCallBack.send(String.format("%s rolled %d defense points", enemy.getName(), defence));
                 int damageDone = Math.max((int) spellPower - defence, 0);
@@ -58,8 +67,11 @@ public class Mage extends Player {
             }
         }
 
-        }
 
+
+    public String describe() {
+        return String.format("%s\t\tMana: %d/%d , Spell Power:%d", super.describe(), mana.getAmount(), mana.getPoolbar(),spellPower);
+    }
 
     @Override
     public void onTick() {

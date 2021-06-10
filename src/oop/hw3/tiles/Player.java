@@ -20,7 +20,7 @@ public abstract class Player extends Unit {
         initialize(position);
     }
 
-    protected void onLevelUp(){
+     protected void onLevelUp(){
         level++;
         health.onLevelUp(level,10);
         exp.onLevelUp(level, 50);
@@ -29,59 +29,30 @@ public abstract class Player extends Unit {
 
     }
 
-    // Deals damage to the enemy with ability
-    protected void abilityDamage(Enemy e, int abilityDamage) {
 
-    }
-
-    //public abstract void onGameTick();
-    public abstract void onTick();
-//        String c = userInput.readLine();
-//         while (!(c.length()==1 && "adwseq".contains(c))) {
-//             c = userInput.readLine();
-//         }
-//             onMovePlayer(c.charAt(0));
-
-
-
-        //onGameTick();
-
-
-//   }
-
-    private void onMovePlayer(char c) {
-//        if (c=='d')
-//            interact();
-
-    }
 
     public void visit(Enemy e){
         super.battle(e);
         if(!e.isAlive())
         {
             onKill(e);
-            //swapPosition(e);
         }
     }
+    public void visit(Player player){}
 
-    @Override
-    public void Combat() {
 
-    }
 
-    @Override
     protected void onKill(Enemy enemy) {
         exp.onKill(enemy.getExperienceValue());
+        messageCallBack.send(String.format("%s gained %s experience.", getName(),enemy.getExperienceValue()));
         while(exp.getAmount()>= exp.getPoolbar()) {
             onLevelUp();
         }
+
         enemy.onDeath();
     }
 
-    @Override
-    public void processStep() {
 
-    }
 
     @Override
     public void onDeath() {
@@ -105,5 +76,6 @@ public abstract class Player extends Unit {
     public void accept(Unit unit) {
         unit.visit(this);
     }
+    public abstract void onTick();
 
 }

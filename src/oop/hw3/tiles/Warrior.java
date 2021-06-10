@@ -20,10 +20,6 @@ public class Warrior extends Player {
         this.cooldown = new Cooldown(cooldown);
     }
 
-    @Override
-    public void visit(Player p) {
-
-    }
 
     @Override
     public void castSpecialAbility(List<Enemy> enemies) {
@@ -50,16 +46,34 @@ public class Warrior extends Player {
 
     @Override
     protected void onLevelUp() {
+
+        int healthIncreased=health.getPoolbar();
+        int attackIncreased=attackPoints;
+        int defenceIncreased=defensePoints;
         super.onLevelUp();
         cooldown.onLevelUp();
         health.onLevelUp(level, 5);
         setAttackPoints(attackPoints+(level*2));
         setDefensePoints(defensePoints+level);
+
+
+        healthIncreased=health.getPoolbar()-healthIncreased;
+        attackIncreased=attackPoints-attackIncreased;
+        defenceIncreased=defensePoints-defenceIncreased;
+        messageCallBack.send(String.format("%s reached level %d : +%d Health, +%d Attack, +%d Defence", getName(), level,healthIncreased,attackIncreased,defenceIncreased));
     }
 
     @Override
     public void onTick() {
         cooldown.onTick();
     }
+
+    public String describe() {
+        return String.format("%s\t\t Cool down: %d/%d", super.describe(), cooldown.getRemainingCooldown(),cooldown.getAbilityCooldown());
+    }
+
+
+
+
 
 }

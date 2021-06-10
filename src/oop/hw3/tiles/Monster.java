@@ -34,41 +34,12 @@ public class Monster extends Enemy {
         return numericGenerator.movment();
     }
 
-//    @Override
-//    protected int defend() {
-//        return 0;
-//    }
-//
-//    @Override
-//    protected int attack() {
-//        return 1000;
-//    }
-
-//    @Override
-//    public void visit(Player p) {
-//
-//    }
-
     @Override
     public void visit(Enemy e) {
 
     }
 
-    @Override
-    public void Combat() {
 
-    }
-
-    @Override
-    protected void onKill(Enemy e) {
-
-    }
-
-
-    @Override
-    public void processStep() {
-
-    }
 
 
 }

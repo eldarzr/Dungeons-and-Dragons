@@ -6,6 +6,26 @@ public class Energy {
     private final int totalEnergy = 100;
     private int currEnergy;
 
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public int getTotalEnergy() {
+        return totalEnergy;
+    }
+
+    public int getCurrEnergy() {
+        return currEnergy;
+    }
+
+    public void setCurrEnergy(int currEnergy) {
+        this.currEnergy = currEnergy;
+    }
+
     public Energy(int cost){
         this.cost = cost;
         currEnergy = totalEnergy;
