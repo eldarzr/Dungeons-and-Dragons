@@ -33,11 +33,8 @@ public class FileParser {
             }
             return levels;
         } catch (Exception e) {
-            System.out.println(e.getMessage() + "\n" +
-                    e.getStackTrace());
-            level--;
+            return null;
         }
-        return null;
     }
 
 }

@@ -65,8 +65,6 @@ public class Board {
     }
 
     public void onTick() {
-
-
         String s = userInput.readLine();
         while (!(s.length()==1 && "adwseq".contains(s))) {
              s = userInput.readLine();

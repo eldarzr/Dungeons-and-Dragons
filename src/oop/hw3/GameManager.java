@@ -19,15 +19,12 @@ public class GameManager {
 
     }
 
-    public void onTick(char c) {
-        //board.onTick(c);
-        //board.printBoard();
-    }
-
     public void play() {
         initializePlayer();
         while (player.isAlive()) {
             char[][] currLevel = fileParser.readLevel();
+            if(currLevel == null)
+                return;
             levelInitiallizer(currLevel);
             board.printBoard();
             boolean isActive = true;
