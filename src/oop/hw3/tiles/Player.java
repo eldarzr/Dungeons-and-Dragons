@@ -21,11 +21,12 @@ public abstract class Player extends Unit {
     }
 
     protected void onLevelUp(){
-     level++;
-     exp.onLevelUp(level, 50);
-     health.onLevelUp(level, 10);
-     setAttackPoints(attackPoints+(level*4));
-     setDefensePoints(defensePoints+level);
+        level++;
+        health.onLevelUp(level,10);
+        exp.onLevelUp(level, 50);
+        setAttackPoints(attackPoints + 4*level);
+        setDefensePoints(defensePoints + level);
+
     }
 
     // Deals damage to the enemy with ability
@@ -71,8 +72,9 @@ public abstract class Player extends Unit {
     @Override
     protected void onKill(Enemy enemy) {
         exp.onKill(enemy.getExperienceValue());
-        if(exp.getAmount()>= exp.getPoolbar())
+        while(exp.getAmount()>= exp.getPoolbar()) {
             onLevelUp();
+        }
         enemy.onDeath();
     }
 

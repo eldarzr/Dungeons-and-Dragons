@@ -42,7 +42,7 @@ public class Warrior extends Player {
             messageCallBack.send(String.format("no enemy is in %s area", getName()));
             return;
         }
-        Enemy e = enemies.get(RandomGenerator.getInstance().combat(enemies.size()));
+        Enemy e = enemies.get(RandomGenerator.getInstance().range(enemies.size()));
         if(!cooldown.onAbilityCast())
             messageCallBack.send(String.format("%s doesnt have enought cooldown\n", getName()));
         else {
@@ -60,7 +60,7 @@ public class Warrior extends Player {
 
     @Override
     protected void onLevelUp() {
-        level++;
+        super.onLevelUp();
         cooldown.onLevelUp();
         health.onLevelUp(level, 5);
         setAttackPoints(attackPoints+(level*2));

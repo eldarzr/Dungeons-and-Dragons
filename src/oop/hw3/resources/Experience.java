@@ -8,8 +8,8 @@ public class Experience extends Resource{
 
 
     public void onLevelUp(int level, int inc) {
-        poolbar = level * 50;
-        amount = 0;
+        amount = amount-poolbar;
+        poolbar = level * inc;
     }
 
     public void onKill(int exp){
