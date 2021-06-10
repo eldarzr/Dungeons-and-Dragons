@@ -2,11 +2,10 @@ package oop.hw3;
 
 import oop.hw3.ioSystem.FileInput;
 
-import java.net.URISyntaxException;
 import java.util.*;
 public class Main {
 
-    public static void main(String[] args) throws URISyntaxException {
+    public static void main(String[] args)  {
         // write your code here
         GameManager gm = new GameManager();
         gm.play();
