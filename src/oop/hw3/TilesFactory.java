@@ -3,10 +3,7 @@ package oop.hw3;
 import oop.hw3.ioSystem.UserInput;
 import oop.hw3.ioSystem.UserOutput;
 import oop.hw3.resources.Health;
-import oop.hw3.tiles.Enemy;
-import oop.hw3.tiles.Monster;
-import oop.hw3.tiles.Player;
-import oop.hw3.tiles.Warrior;
+import oop.hw3.tiles.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -40,7 +37,9 @@ public class TilesFactory {
     {
         if(c=='K')
             return new Monster('K',"Night King",30,5,new Health(50),500,8);
-        return  allEnemeis.get(c);
+        if(c=='B')
+            return new Trap ( 'B',"Bonus Trap",1,1 , new Health(1),250,1,5);
+    return  allEnemeis.get(c);
 
     }
 

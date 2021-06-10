@@ -20,7 +20,7 @@ public class RandomGenerator implements NumericGenerator{
     }
 
     public int combat(int num) {
-        return (int)(Math.random()*num);
+        return (int)(Math.random()*(num+1));
 
     }
 }

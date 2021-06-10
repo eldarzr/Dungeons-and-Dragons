@@ -23,7 +23,7 @@ public abstract class Enemy extends Unit {
         this.enemyDeathCallBack = enemyDeathCallBack;
      }
 
-    public abstract char move(Player player);
+    public abstract char onTick(Player player);
 
      @Override
      public void visit(Enemy e) { }

@@ -66,7 +66,11 @@ public abstract class Unit extends Tile{
 
     protected void battle(Unit u){
        messageCallBack.send(String.format("%s engaged in combat with %s.\n%s\n%s" ,getName(),u.getName(),describe(),u.describe()));
-       int damageDone=Math.max(attack() - u.defend(),0);
+       int attack=attack();
+       int defence = u.defend();
+        messageCallBack.send(String.format("%s rolled %d attack points" ,getName(),attack));
+        messageCallBack.send(String.format("%s rolled %d defense points" ,u.getName(),defence));
+        int damageDone=Math.max(attack-defence,0);
        u.health.reduceAmount(damageDone);
        messageCallBack.send(String.format("%s dealt %d damage to %s." ,getName(),damageDone,u.getName()));
 
@@ -108,6 +112,7 @@ public abstract class Unit extends Tile{
 
     public String describe() {
         return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", getName(), getHealth(), getAttackPoints(), getDefensePoints());
+
     }
 
     public abstract void castSpecialAbility(List<Enemy> enemy);
