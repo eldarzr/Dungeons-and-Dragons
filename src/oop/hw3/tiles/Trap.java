@@ -30,7 +30,7 @@ public class Trap extends Enemy {
         }
         setCharacter(isVisible ? originalTile : '.');
         if (position.range(player.position)<2)
-            battle(this);
+            battle(player);
 
 //        if (ticksCount==visibilityTime && isVisible )
 //        {
