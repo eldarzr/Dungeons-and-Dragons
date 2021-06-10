@@ -7,10 +7,6 @@ import java.util.List;
 
 public abstract class Enemy extends Unit {
 
-     public int getExperienceValue() {
-         return experienceValue;
-     }
-
      private int experienceValue;
     protected EnemyDeathCallBack enemyDeathCallBack;
 
@@ -19,7 +15,10 @@ public abstract class Enemy extends Unit {
         this.experienceValue = experienceValue;
  }
 
-     public void setOnDeathCallBack(EnemyDeathCallBack enemyDeathCallBack){
+    public int getExperienceValue() {
+        return experienceValue;
+    }
+    public void setOnDeathCallBack(EnemyDeathCallBack enemyDeathCallBack){
         this.enemyDeathCallBack = enemyDeathCallBack;
      }
 
@@ -37,6 +36,7 @@ public abstract class Enemy extends Unit {
 
      @Override
      public void onDeath() {
+         messageCallBack.send(String.format("%s died.", getName()));
          enemyDeathCallBack.call();
      }
 

@@ -13,7 +13,6 @@ public abstract class Unit extends Tile{
     protected int attackPoints;
     protected int defensePoints;
     protected Health health;
-    //protected boolean alive;
 
    public Unit(char tile,String name, int attackPoints, int defensePoints ,Health health) {
         super(tile);
@@ -21,8 +20,7 @@ public abstract class Unit extends Tile{
         this.attackPoints = attackPoints;
         this.defensePoints = defensePoints;
         this.health=health;
-        //this.alive=true;
-    }
+   }
 
     public Health getHealth() {
         return health;
@@ -76,7 +74,6 @@ public abstract class Unit extends Tile{
 
     }
 
-    //protected abstract int defend();
 
     public int defend(){
         return RandomGenerator.getInstance().combat(defensePoints);
@@ -85,7 +82,6 @@ public abstract class Unit extends Tile{
         return RandomGenerator.getInstance().combat(attackPoints);
     }
 
-    //protected abstract int attack();
 
     public void interact(Tile tile)
     {
@@ -96,8 +92,6 @@ public abstract class Unit extends Tile{
     }
     public void visit(Wall wall){
     }
-    public abstract void visit(Player p);
-    public abstract void visit(Enemy e);
 
     protected void swapPosition(Empty empty) {
         Position pos = empty.getPosition();
@@ -105,17 +99,14 @@ public abstract class Unit extends Tile{
         position=pos;
     }
 
-    public abstract void Combat();
-    protected abstract void onKill(Enemy e);
-    public abstract void processStep();
-    public abstract void onDeath();
 
     public String describe() {
         return String.format("%s\t\tHealth: %s\t\tAttack: %d\t\tDefense: %d", getName(), getHealth(), getAttackPoints(), getDefensePoints());
 
     }
-
+    public abstract void visit(Player p);
+    public abstract void visit(Enemy e);
+    public abstract void onDeath();
     public abstract void castSpecialAbility(List<Enemy> enemy);
-
     public abstract void onTick();
 }

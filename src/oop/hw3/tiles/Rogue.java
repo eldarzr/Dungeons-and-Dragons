@@ -22,15 +22,22 @@ public class Rogue extends Player {
     }
 
     @Override
-    public void visit(Player p) {
-
-    }
-
-    @Override
     protected void onLevelUp() {
+        int healthIncreased=health.getPoolbar();
+        int attackIncreased=attackPoints;
+        int defenceIncreased=defensePoints;
+
         super.onLevelUp();
         energy.onLevelUp();
         setAttackPoints(attackPoints+(level*ATTACK_LEVEL_UP));
+
+        healthIncreased=health.getPoolbar()-healthIncreased;
+        attackIncreased=attackPoints-attackIncreased;
+        defenceIncreased=defensePoints-defenceIncreased;
+        messageCallBack.send(String.format("%s reached level %d : +%d Health, +%d Attack, +%d Defence", getName(), level,healthIncreased,attackIncreased,defenceIncreased));
+
+
+
     }
 
     @Override
@@ -56,6 +63,9 @@ public class Rogue extends Player {
         }
     }
 
+    public String describe() {
+        return String.format("%s\t\tEnergy: %d/%d", super.describe(), energy.getCurrEnergy(), energy.getTotalEnergy());
+    }
     @Override
     public void onTick() {
         energy.onTick();
