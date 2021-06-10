@@ -14,8 +14,8 @@ public class GameManager {
 
 
 
-    public GameManager() {
-        fileParser = new FileParser();
+    public GameManager(String path) {
+        fileParser = new FileParser(path);
 
     }
 

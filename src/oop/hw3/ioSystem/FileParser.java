@@ -9,9 +9,9 @@ public class FileParser {
     Path currentPath;
     int level = 1;
 
-    public FileParser() {
+    public FileParser(String path) {
         currentPath = Paths.get(System.getProperty("user.dir"));
-        currentPath = Paths.get(currentPath.toString(), "levels_dir");
+        currentPath = Paths.get(currentPath.toString(), path);
     }
     public char[][] readLevel() {
         String currentLevel = "level" + level + ".txt";
