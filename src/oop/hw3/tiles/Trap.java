@@ -14,7 +14,7 @@ public class Trap extends Enemy {
         super(tile, name, attackPoints, defensePoints, health, experienceValue);
         this.visibilityTime = visibilityTime;
         this.inVisibilityTime = inVisibilityTime;
-        this.ticksCount = 0;
+        this.ticksCount = 1;
         this.isVisible = true;
         originalTile=tile;
     }
@@ -35,6 +35,7 @@ public class Trap extends Enemy {
         return 'q';
     }
 
+    public void visit(Empty empty){ }
 
 
 
