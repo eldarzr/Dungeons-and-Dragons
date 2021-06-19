@@ -72,25 +72,25 @@ public class TilesFactory {
 
     public Player createPlayer()
     {
-       boolean isPlayerCreated = false;
+        boolean isPlayerCreated = false;
         Player p = null;
-       while(!isPlayerCreated) {
-           //userOutput.writeOutput(Arrays.toString(allPlayers));
-           printPlayers();
-           try {
-               int num = Integer.parseInt(userInput.readLine());
-               p = createPlayer(num);
-               if (p != null) {
-                   isPlayerCreated=true;
-                   return p;
-               }
-           } catch (Exception e) {
+        while(!isPlayerCreated) {
+            //userOutput.writeOutput(Arrays.toString(allPlayers));
+            printPlayers();
+            try {
+                int num = Integer.parseInt(userInput.readLine());
+                p = createPlayer(num);
+                if (p != null) {
+                    isPlayerCreated=true;
+                    return p;
+                }
+            } catch (Exception e) {
                 userOutput.writeOutput("You can enter one of the numbers presented only");
 
-           }
+            }
 
-       }
-       return  p;
+        }
+        return  p;
     }
 
     private void printPlayers() {
